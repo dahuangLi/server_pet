@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/dahuangLi/server_pet#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "@alicloud/sms-sdk": "^1.0.9",
+    "koa": "^2.6.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0"
   }
 }
