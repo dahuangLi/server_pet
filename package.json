@@ -18,8 +18,10 @@
   "homepage": "https://github.com/dahuangLi/server_pet#readme",
   "dependencies": {
     "@alicloud/sms-sdk": "^1.0.9",
+    "assert": "^1.4.1",
     "koa": "^2.6.1",
     "koa-bodyparser": "^4.2.1",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "mongodb": "^3.1.9"
   }
 }

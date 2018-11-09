@@ -5,12 +5,13 @@ const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 const app = new Koa();
 const router = new Router();
+const dbFuncs = require('./common/db')
 
 app.use(bodyParser());
 
 // 获取验证码
 router.post('/getCheckNumber',async function (ctx, next) {
-
+    console.log(ctx)
     //  获取随机数
     var number = "";
 
@@ -20,13 +21,14 @@ router.post('/getCheckNumber',async function (ctx, next) {
     };
 
     const result = await message.sendMessage(number,ctx.request.body.phoneNumber);
+    console.log(result)
 
     let status;
 
     result.Message == 'OK'? 1 : 0
 
     ctx.response.body = {
-        status,
+        status:result.Message,
         data:{
             checkNumber:number
         }
@@ -34,5 +36,5 @@ router.post('/getCheckNumber',async function (ctx, next) {
 
 });
 
-
+app.use(router.routes());
 app.listen(3000)
