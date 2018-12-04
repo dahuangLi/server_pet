@@ -6,7 +6,7 @@ const MongoClient = require('mongodb').MongoClient,
 const url = 'mongodb://39.104.160.118:27017';
 
 // Database Name
-const dbName = 'RN-USER';
+const dbName = 'PET-USER';
 
 // 连接MongoDB
 var collection;
@@ -15,7 +15,7 @@ MongoClient.connect(url,{ useNewUrlParser: true }, function(err, client) {
     assert.equal(null, err);
     console.log("Connected successfully to server");
 
-    const db = client.db("RN-USER");
+    const db = client.db("PET-USER");
     collection = db.collection('userInfo');
 
 });
