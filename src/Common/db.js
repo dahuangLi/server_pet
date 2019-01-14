@@ -6,7 +6,7 @@ const MongoClient = require('mongodb').MongoClient,
 const url = 'mongodb://39.104.160.118:27017';
 
 // Database Name
-const dbName = 'PET-USER';
+const dbName = 'PET_USER';
 
 // 连接MongoDB
 var collection;

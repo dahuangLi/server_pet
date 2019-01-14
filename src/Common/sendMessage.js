@@ -19,7 +19,7 @@ var sendMessage = function(number,phoneNumber){
         console.log('-----------------------------------------------')
         console.log(err)
         console.log('-----------------------------------------------')
-        return {status:0};
+        return {status:0,errorMessage:err.data.Message};
     })
 };
 

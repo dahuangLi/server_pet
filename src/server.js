@@ -11,26 +11,24 @@ app.use(bodyParser());
 
 // 获取验证码
 router.post('/getCheckNumber',async function (ctx, next) {
-    // console.log(ctx)
-    //  获取随机数
-    var number = "";
+    console.log(ctx.request.body)
 
-    var numberArr = ["0","1","2","3","4","5","6","7","8","9"];
-    for(var i = 0;i<6;i++){
-        number = number + numberArr[Math.floor(Math.random()*10)];
-    };
-
-    const result = await Message.sendMessage(number,ctx.request.body.phoneNumber);
-    console.log(result)
-
-    let status = result.status;
-
+    const resultMessage = await Message.sendMessage(ctx.request.body.number,ctx.request.body.phoneNumber);
+    let resultDb = await dbFuncs.insertData({phoneNumber:ctx.request.body.phoneNumber}).then(function (data) {
+        return data.result;
+    });
+    
+   if(resultMessage.status){
     ctx.response.body = {
-        status:status,
+        status:resultMessage.status,
         data:{
-            checkNumber:number
+            checkNumber:ctx.request.body.number
         }
     }
+   }else{
+    ctx.response.body = resultMessage;
+   }
+
 });
 
 app.use(router.routes());
