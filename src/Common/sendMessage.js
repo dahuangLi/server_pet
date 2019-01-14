@@ -14,16 +14,12 @@ var sendMessage = function(number,phoneNumber){
         TemplateCode: 'SMS_33970099',
         TemplateParam: '{"number":"'+ number+'"}'
     }).then(function (res) {
-        return res;
-        let {Code}=res
-        if (Code === 'OK') {
-            //处理返回参数
-            console.log('*************************************************')
-            console.log(res)
-            console.log('*************************************************')
-        }
+        return {status:1};
     }, function (err) {
+        console.log('-----------------------------------------------')
         console.log(err)
+        console.log('-----------------------------------------------')
+        return {status:0};
     })
 };
 

@@ -1,6 +1,6 @@
 const Koa = require('koa')
 const path = require('path')
-const message = require('./common/sendMessage')
+const Message = require('./common/sendMessage')
 const Router = require('koa-router')
 const bodyParser = require('koa-bodyparser')
 const app = new Koa();
@@ -11,7 +11,7 @@ app.use(bodyParser());
 
 // 获取验证码
 router.post('/getCheckNumber',async function (ctx, next) {
-    console.log(ctx)
+    // console.log(ctx)
     //  获取随机数
     var number = "";
 
@@ -20,21 +20,18 @@ router.post('/getCheckNumber',async function (ctx, next) {
         number = number + numberArr[Math.floor(Math.random()*10)];
     };
 
-    const result = await message.sendMessage(number,ctx.request.body.phoneNumber);
+    const result = await Message.sendMessage(number,ctx.request.body.phoneNumber);
     console.log(result)
 
-    let status;
-
-    result.Message == 'OK'? 1 : 0
+    let status = result.status;
 
     ctx.response.body = {
-        status:result.Message,
+        status:status,
         data:{
             checkNumber:number
         }
     }
-
 });
 
 app.use(router.routes());
-app.listen(3000)
+app.listen(3020)
